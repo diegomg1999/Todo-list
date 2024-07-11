@@ -14,6 +14,7 @@ inputSubmit.addEventListener('click', function() {
         let listContainer = document.createElement('li');
         listContainer.innerHTML = `${valor}` 
         tasksContainer.appendChild(listContainer);
+        text.innerText = `${valor}`
         tareasPorHacer.value = "";
 
         const checkTask = document.createElement('button');
@@ -37,8 +38,17 @@ inputSubmit.addEventListener('click', function() {
         listContainer.appendChild(edit)
 
         edit.addEventListener('click', function() {
+            text.contentEditable = true;
+            listContainer.removeChild(removeTask);
+            listContainer.removeChild(checkTask);
+            listContainer.removeChild(edit);
+            const saveButton = document.createElement('button');
+            listContainer.appendChild(saveButton)
+            saveButton.addEventListener('click', function()
+            {
+                text.value = text.contentEditable;
+            })
 
-            listContainer.textEditable = true;
         })
         
     }
