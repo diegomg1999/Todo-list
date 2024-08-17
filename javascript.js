@@ -2,6 +2,8 @@
 let tareasPorHacer = document.querySelector('#tasks');
 let tasksContainer = document.querySelector('#tasks-container');
 let inputSubmit = document.querySelector('#button-to-add-tasks');
+let modal = document.querySelector('#alertMessage');
+let btonToClose = document.querySelector('#btn-to-close-modal');
 
 
 const tasks = [];
@@ -14,11 +16,11 @@ function addtaskAction() {
     let valor = tareasPorHacer.value.trim();
                 
         if(valor === "") {
-                alert('Ingresa un valor correcto');
-                        return
+            modal.showModal();
+            return
         } else if (valor.length >= 1){
             let listContainer = document.createElement('li');
-        let text = document.createElement('span');
+            let text = document.createElement('span');
                         text.setAttribute('id', 'texto-tareas');
                         listContainer.setAttribute('id', 'list-container')
                         listContainer.appendChild(text);
@@ -62,7 +64,8 @@ function buttons(tasks) {
 
                 inputParaEditar.addEventListener('blur', function() {
                     if(inputParaEditar.value.trim() === ""){
-                        alert("Agregar un valor correcto");
+                        modal.showModal();
+                        return
                     }
                     else {
                         textoAEditar.textContent = inputParaEditar.value;
@@ -82,7 +85,8 @@ function buttons(tasks) {
                 saveButton.addEventListener('click', function()
                     {
                         if(inputParaEditar.value.trim() === ""){
-                            alert("Agregar un valor correcto");
+                            modal.showModal();
+                            return
                         }
                         else {
                         textoAEditar.textContent = inputParaEditar.value;
@@ -134,7 +138,9 @@ function loadTasks() {
     buttons(tasks);
 }
   
-    
+btonToClose.addEventListener('click', () => {
+    modal.close()
+})
 
 
 
